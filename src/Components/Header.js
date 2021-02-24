@@ -30,7 +30,8 @@ function Header() {
 export default Header
 
 const Container = styled.div`
-    background: #350d36;
+    // background: #350d36;
+    background: #030e29;  //Dark Mode
     color: white;
     display: flex;
     align-items: center;
@@ -44,9 +45,10 @@ const Main = styled.div`
     padding-right: 16px;
     margin-right: 16px;
     margin-left: 16px;
+    cursor: pointer;
 `
 const SearchContainer = styled.div`
-    min-width: 400px;
+    min-width: 200px;
     margin-left: 16px;
     margin-right: 16px;
 `
@@ -56,9 +58,8 @@ const Search = styled.div`
     border-radius: 6px;
     display: flex;
     align-items: center;
-    // Format the search input bar;
+    // Format the search input bar
     input {
-            // width: 100%
             background-color: transparent;
             color: white;
             border: none;
@@ -90,7 +91,8 @@ const UserImage = styled.div`
     height: 28px;
     img {
         width: 100%;
-        border: 2px solid white;
+        border: 1px solid white;
         border-radius: 25%;
+        cursor: pointer;
     }
 `

@@ -1,11 +1,20 @@
 import React from 'react'
+import styled from 'styled-components'
 
 function Chat() {
     return (
-        <div>
-            Chat Section via Chat.js
-        </div>
+        <Container>
+            Chat Section (Chat.js)
+
+        </Container>
     )
 }
 
 export default Chat
+
+const Container = styled.div`
+    background: #434447;
+    // color: white;
+  
+`
+
