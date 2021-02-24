@@ -1,3 +1,5 @@
+This is a Slack Clone Project using ReactJS. Done during the 5Day ReactJS Challenge.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
