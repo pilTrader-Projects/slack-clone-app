@@ -80,9 +80,7 @@ const NewMessage = styled.div`
     mrgin-right: 20px;
     cursor: pointer;
 `
-const MainChannels = styled.div`
- 
-`
+const MainChannels = styled.div``
 const MainchannelItem = styled.div`
     color: rgb(188, 171, 188);
     display: grid;
@@ -96,8 +94,7 @@ const MainchannelItem = styled.div`
         color: yellow;
     }
 `
-const UserChannelContainer = styled.div`
-`
+const UserChannelContainer = styled.div``
 const NewChannelContainer = styled.div`
     color: rgb(188, 171, 188);
     height: 18px;
@@ -131,5 +128,4 @@ const Channel = styled.div`
         background: blue;
         color: yellow;
     }
-
 `

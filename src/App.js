@@ -20,7 +20,7 @@ function App()
               <Sidebar />
               
               <Switch> {/* Router Section */}            
-                <Route path="/room">
+                <Route path="/chat">
                   <Chat />
                 </Route>
 
