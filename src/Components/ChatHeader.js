@@ -8,7 +8,7 @@ function ChatHeader() {
         <Container>
             <TopPortion>
                 <ChannelName>
-                    #Channel Name
+                    #CleverProgrammer
                 </ChannelName>
                 <ChannelDetailsInfo>
                     <ChannelDetailsLabel>
@@ -18,7 +18,7 @@ function ChatHeader() {
                 </ChannelDetailsInfo>
             </TopPortion>
             <ChannelDescription>
-                Companywide announcements and work related concerns.
+                The 5Day ReactJS Challenge - SLACK Clone Project
             </ChannelDescription>
        </Container>
     )
@@ -30,10 +30,8 @@ const Container = styled.div`
     background: #071942;
     padding-left: 20px;
     color : white;
-    border: 1px solid gray;
+    border: 1px solid #030e29;
     border-radius: 5px;
-
-   
 `
 
 const TopPortion = styled.div`
@@ -43,33 +41,26 @@ const TopPortion = styled.div`
 `
 const ChannelName = styled.div`
     font-weight: 700;
-    // padding-bottom: 4px;
 `
 
 const ChannelDetailsInfo = styled.div`
     position: absolute;
+    right: 0;
     display: flex;
     padding-right: 14px;
     align-items: center;
-    right: 0;
     :hover{
         cursor: pointer;
         color: yellow;
-    }
-    // {
-    //     infoIcon:hover{
-    //         cursor: pointer;
-    //     }
-    // }
+    } 
 `
 const ChannelDetailsLabel = styled.div`
     font-weight: 200;
     font-size: 14px;
     padding-right: 8px;
 
-    `
+`
 const ChannelDescription = styled.div`
-   
-    color: #606060;
+    color: gray;
     padding-bottom: 8px;  
 `

@@ -68,7 +68,7 @@ const Container = styled.div`
     // background: #3f0e40; //Original Mode
     background: #071942;  //Dark Mode
     color: white;
-    border: 1px solid gray;
+    border: 1px solid #030e29;
     border-radius: 5px;
 `
 const WorkspaceContainer = styled.div`
