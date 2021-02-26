@@ -9,9 +9,14 @@ function ChatMessage() {
                 <img src = "https://randomuser.me/api/portraits/women/64.jpg"/>
             </UserAvatar>
             <UserContainer>
-                <UserName>
-                    Debra Montgomery
-                </UserName>
+                <FirstLine>
+                    <UserName>
+                        Debra Montgomery
+                    </UserName>
+                    <TimeStamp>
+                        2/27/2020 11:13:55 PM
+                    </TimeStamp>
+                </FirstLine>
                 <MsgText>
                     Hello guys!! Happy Coding #CleverProgrammer Team the quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog
                 </MsgText>
@@ -22,14 +27,26 @@ function ChatMessage() {
 
 export default ChatMessage
 
+const TimeStamp = styled.div`
+    font-weight: 700;
+    font-size: 12px;
+`
+const FirstLine = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: gray;    
+`
 const Container = styled.div`
     display: flex;
     align-items: top;
-    // flex-direction: row;
+    border 1px solid #d0f7c3;
+    border-radius: 6px;
+    padding-left: 10px;
     :hover{
         background: #d0f7c3;
-        // border 2px solid gray;
-        border-radius: 10px;
+
     }
 `
 const UserContainer = styled.div`
@@ -52,6 +69,7 @@ const UserAvatar = styled.div`
 `
 
 const UserName = styled.div`
+    padding-right: 10px;
     font-weight: 700;
     color: black;
     :hover{
@@ -60,7 +78,7 @@ const UserName = styled.div`
     }
 `
 const MsgText = styled.div`
-    font-weight: 400;
+    font-weight: 450;
     font-size: 14px;
     color: #13164f;
 `
