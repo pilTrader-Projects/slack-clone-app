@@ -1,16 +1,17 @@
 import React from 'react'
 import styled from 'styled-components'
 import ChatHeader from './ChatHeader'
+import ChatInput from './ChatInput'
 
 function Chat() {
     return (
         <Container>
-            <ChatHeaderContainer>
-                <ChatHeader/>
-            </ChatHeaderContainer>
-            <ChatMain>
+            <ChatHeader/>    
+            <MessageContainer>
                 Chat Section (Chat.js)
-            </ChatMain>
+            </MessageContainer>
+            <ChatInput />
+            
         </Container>
     )
 }
@@ -18,18 +19,20 @@ function Chat() {
 export default Chat
 
 const Container = styled.div`
-// display: grid;
-    
-`
-const ChatHeaderContainer = styled.div`
-    background: gray;
+    height: 100%;
     display: grid;
-    align-items: center;
+    grid-template-rows: 64px auto min-content;
+    // ChatHeader{
+    //     padding-left: 20px;
+    // } 
 `
 
-const ChatMain = styled.div`
-background: white;
-padding-top: 28px;
-color: black;
+const MessageContainer = styled.div`
+    // background: gray;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+    height: auto;
+    color: white;
 `
-

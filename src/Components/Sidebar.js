@@ -3,8 +3,21 @@ import styled from 'styled-components'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AddIcon from '@material-ui/icons/Add';
 import { sidebarItems } from '../Data/SidebarData'
-import {sidebarChannel} from  '../Data/SidebarData'
-function Sidebar() {
+import { sidebarChannel } from '../Data/SidebarData'
+import { getChannels } from '../App'
+import db from '../firebase'
+
+function Sidebar(props) {
+    
+    const addChannel = () => {
+        const promptName = prompt("Type the name of the New Channel to add ");
+        if (promptName) {
+            db.collection('channels').add({
+                Name: promptName
+            })   
+        }
+    }
+
     return (
         <Container>
             <WorkspaceContainer>
@@ -29,18 +42,17 @@ function Sidebar() {
             <UserChannelContainer>
                 <NewChannelContainer>
                     <Name>
-                        User's Channel
+                        User's Channels
                     </Name>
                     <AddNewChannelIcon>
-                        <AddIcon/>
+                        <AddIcon onClick = {addChannel} />
                     </AddNewChannelIcon>
-
                 </NewChannelContainer>
                 <ChannelsLists>
                     {
-                        sidebarChannel.map(item => (
+                        props.channels.map(item => (
                             <Channel>
-                                {item.ChannelName}        
+                                #{item.name}        
                             </Channel>))
                     }
                 </ChannelsLists>
@@ -53,9 +65,11 @@ function Sidebar() {
 export default Sidebar
 
 const Container = styled.div`
-    // background: #3f0e40;
+    // background: #3f0e40; //Original Mode
     background: #071942;  //Dark Mode
     color: white;
+    border: 1px solid gray;
+    border-radius: 5px;
 `
 const WorkspaceContainer = styled.div`
     color: white;
@@ -66,7 +80,9 @@ const WorkspaceContainer = styled.div`
     padding-right: 19px;
     justify-content: space-between;
 `
-const Name = styled.div`  `
+const Name = styled.div` 
+    border: 3px;
+`
 const NewMessage = styled.div`
     width: 24px;
     height: 24px;
@@ -79,6 +95,10 @@ const NewMessage = styled.div`
     border-radius: 50%;
     mrgin-right: 20px;
     cursor: pointer;
+    :hover{
+        background: #071942;
+        color: yellow;
+    }
 `
 const MainChannels = styled.div``
 const MainchannelItem = styled.div`
@@ -97,19 +117,23 @@ const MainchannelItem = styled.div`
 const UserChannelContainer = styled.div``
 const NewChannelContainer = styled.div`
     color: rgb(188, 171, 188);
-    height: 18px;
+    height: 28px;
     align-items: center;
     justify-content: space-between;
     margin-top: 18px;
     margin-bottom: 15px;
     padding-left: 19px;
     padding-right: 19px;
-    display: flex;    
+    display: flex;
 `
 const AddNewChannelIcon = styled.div`
     width: 24px;
     height: 24px;
     cursor: pointer;
+    :hover {
+        // background: gray;
+        color: yellow;
+    }
 `
 const ChannelsLists = styled.div`
     color: rgb(188, 171, 188);

@@ -11,10 +11,10 @@ function ChatHeader() {
                     #Channel Name
                 </ChannelName>
                 <ChannelDetailsInfo>
-                    <InfoIcon />
                     <ChannelDetailsLabel>
                         Channel Details
                     </ChannelDetailsLabel>
+                    <InfoIcon />
                 </ChannelDetailsInfo>
             </TopPortion>
             <ChannelDescription>
@@ -27,35 +27,49 @@ function ChatHeader() {
 export default ChatHeader
 
 const Container = styled.div`
-    background: gray;
+    background: #071942;
+    padding-left: 20px;
     color : white;
-    padding-right: 19px;
-    padding-left: 19px;
+    border: 1px solid gray;
+    border-radius: 5px;
+
+   
 `
 
 const TopPortion = styled.div`
     height: 28px;
-    display: grid;
-    align-items: space-between;
+    display: flex;
+    align-items: center;
 `
 const ChannelName = styled.div`
-    // font-size: 100%;
+    font-weight: 700;
     // padding-bottom: 4px;
 `
 
 const ChannelDetailsInfo = styled.div`
     position: absolute;
-    display: grid;
-    padding-right: 16px;
-    justify-items: center;
+    display: flex;
+    padding-right: 14px;
+    align-items: center;
     right: 0;
-    cursor: pointer;
+    :hover{
+        cursor: pointer;
+        color: yellow;
+    }
+    // {
+    //     infoIcon:hover{
+    //         cursor: pointer;
+    //     }
+    // }
 `
-const ChannelDetailsLabel = styled.div``
+const ChannelDetailsLabel = styled.div`
+    font-weight: 200;
+    font-size: 14px;
+    padding-right: 8px;
+
+    `
 const ChannelDescription = styled.div`
-    font-size: 90%;
-    color: black;
+   
+    color: #606060;
     padding-bottom: 8px;  
 `
-
-
