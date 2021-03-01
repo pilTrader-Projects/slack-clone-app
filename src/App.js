@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
+import {useEffect, useState} from 'react'
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Header from './Components/Header'
 import Chat from './Components/Chat'
@@ -7,35 +8,67 @@ import Login from './Components/Login'
 import Components from 'styled-components'
 import styled from 'styled-components'
 import Sidebar from './Components/Sidebar'
+import db from './firebase'
+import {auth, provider} from './firebase'
 
 
-function App()
-  {
+function App(){
+  const [channels, setChannels] = useState([]);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  
+  const getChannels = () => {
+    db.collection('channels').onSnapshot
+      ((snapshot) => {
+        setChannels(snapshot.docs.map((doc) => {
+            // console.log(doc.data());
+            return {id: doc.id, name: doc.data().Name}
+          })
+        )
+      })
+  }
+  
+  const signOut = () => {
+    auth.signOut().then(() => {
+        localStorage.removeItem('user');
+        setUser (null);
+    })
+  }
+  // signOut();
+  useEffect(() => {
+    getChannels();
+  }, [])
+  // End of getChannels = ()
+
+  // console.log(user.name);
+
     return (
       <div className="App">
         <Router>
-          <Container>
-            <Header /> 
-            <Main>
-              <Sidebar />
+          {
+            !user ?
+              <Login setUser={ setUser}/>
+            :
+            <Container>
+              <Header signOut={signOut} user={user} />
+              <Main>
+                <Sidebar channels={channels} />
               
-              <Switch> {/* Router Section */}            
-                <Route path="/chat">
-                  <Chat />
-                </Route>
-
-                <Route path="/about">
-                  About Us
-                </Route>
-
-                <Route path="/">
-                  <Login/>
-                </Route>
-              </Switch> {/* Router Section */}
-            
-            </Main>
-          </Container>
-
+                    <Route path="/about">
+                      About Us
+                   </Route>
+                  <Switch> {/* Router Section */}
+                    <Route path="/chat/:channelId">
+                      <Chat />
+                    </Route>
+                    <Route path='/'>
+                      <NoChannelSelectedMsg>
+                        You have not selected a Channel. Please select a channel.
+                      </NoChannelSelectedMsg>
+                    </Route>
+                </Switch> {/* Router Section */}
+              </Main>
+            </Container>
+          }
         </Router>
       </div>
     );
@@ -43,7 +76,14 @@ function App()
 
 export default App;
 
+const NoChannelSelectedMsg = styled.div`
+  color: white;
+  font-weight: 100;
+`
+
+
 const Container = styled.div`
+  background: #030e29;
   width: 100%; 
   height: 100vh;
   display: grid;
@@ -52,5 +92,5 @@ const Container = styled.div`
 `
 const Main = styled.div`
   display: grid;
-  grid-template-columns: 260px auto;
+  grid-template-columns: 250px auto;
 `
