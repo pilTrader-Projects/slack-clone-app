@@ -1,13 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import styled from 'styled-components'
 import ChatHeader from './ChatHeader'
 import ChatInput from './ChatInput'
 import ChatMessage from './ChatMessage'
+import db from '../firebase'
+import { useParams } from 'react-router-dom'
+
 
 function Chat() {
+
+    let {channelId} = useParams();
+    const [channel, setChannel] = useState();
+    const getChannelName = () => {
+        db.collection('channels')
+        .doc(channelId)
+        .onSnapshot((snapshot) => {
+            setChannel(snapshot.data());
+        })
+        return(channelId);
+    }
+    // console.log(channel);
+    
+    useEffect(()=> {
+        getChannelName(channelId);
+    }, [channelId])
+    
+
     return (
         <Container>
-            <ChatHeader/>    
+            <ChatHeader channel={channel} />    
             <MessageContainer>
                 <ChatMessage />
             </MessageContainer>

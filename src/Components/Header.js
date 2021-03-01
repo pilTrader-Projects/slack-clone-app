@@ -2,7 +2,10 @@ import React from 'react'
 import styled from 'styled-components' 
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-function Header() {
+
+
+function Header({user, signOut}) {
+    // console.log({props.user})
     return (
         <Container>
             <Main>
@@ -16,19 +19,19 @@ function Header() {
             </Main>
             <UserContainer>
                 <UserName>
-                    Bong Bungalan
+                    {user.name}
                 </UserName>
-                <UserImage>
-                    <img src = "https://avatars.githubusercontent.com/u/10995066?s=460&u=544b8ad93993d0092872a041dd5743628937b522&v=4" />
+                <UserImage onClick = {()=>  signOut()} >
+                    <img src={user.photo} />                
                 </UserImage>
 
             </UserContainer>
        </Container>
     )
+   
 }
 
 export default Header
-
 const Container = styled.div`
     // background: #350d36;
     background: #030e29;  //Dark Mode

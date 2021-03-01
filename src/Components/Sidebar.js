@@ -6,8 +6,16 @@ import { sidebarItems } from '../Data/SidebarData'
 import { sidebarChannel } from '../Data/SidebarData'
 import { getChannels } from '../App'
 import db from '../firebase'
+import {useHistory} from 'react-router-dom'
 
 function Sidebar(props) {
+    const history = useHistory();
+
+    const goToChannel = (id) => {
+        if (id) {
+            history.push(`/chat/${id}`)
+        }
+    }
     
     const addChannel = () => {
         const promptName = prompt("Type the name of the New Channel to add ");
@@ -51,10 +59,11 @@ function Sidebar(props) {
                 <ChannelsLists>
                     {
                         props.channels.map(item => (
-                            <Channel>
-                                #{item.name}        
-                            </Channel>))
+                        <Channel onClick={() => goToChannel(item.id)}>
+                            {item.name}
+                        </Channel>))
                     }
+
                 </ChannelsLists>
             </UserChannelContainer>
 

@@ -60,7 +60,7 @@ const UserAvatar = styled.div`
     border: 4px solid transparent;
     border-radius: 10px;
     img{
-        height: 100%
+        height: 100%;
     }
     :hover{
         cursor: pointer;

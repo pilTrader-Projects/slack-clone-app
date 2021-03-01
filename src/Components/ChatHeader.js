@@ -2,13 +2,32 @@ import React from 'react'
 import styled from 'styled-components'
 
 import InfoIcon from '@material-ui/icons/Info';
+import Chat from './Chat.js'
+import db from '../firebase.js'
 
-function ChatHeader() {
+function ChatHeader(props) {
+    // props.getChannelName();
+    // console.log(props.channelId);
+    const ChangeChannel=(id) => {
+        // Get Channel Name & Description from database
+        // and return the Name & Description
+        if (id){
+            const channelName = "@"+ props.channel.Name;
+            const channelDesc = props.channel.dbChannelDescription;
+            return [channelName, channelDesc];
+        } else {
+            return (["Select a Channel", ""]);
+        }
+    }
+
+    // const test = ChangeChannel(props.channel);
+    // console.log(test[0]);
+
     return (
         <Container>
             <TopPortion>
-                <ChannelName>
-                    #CleverProgrammer
+                <ChannelName >
+                    {ChangeChannel(props.channel)[0]}                    
                 </ChannelName>
                 <ChannelDetailsInfo>
                     <ChannelDetailsLabel>
@@ -18,10 +37,12 @@ function ChatHeader() {
                 </ChannelDetailsInfo>
             </TopPortion>
             <ChannelDescription>
-                The 5Day ReactJS Challenge - SLACK Clone Project
+                {ChangeChannel(props.channel)[1]}        
             </ChannelDescription>
        </Container>
     )
+
+    console.log(Chat.getChannelName());
 }
 
 export default ChatHeader
