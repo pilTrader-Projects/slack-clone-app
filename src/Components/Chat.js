@@ -54,20 +54,22 @@ function Chat({user}) {
     return (
         <ChatAreaContainer>
             <ChatHeader channel={channel} />    
-            <MessageContainer>
-                {
-                    ChatMessages.length > 0 &&
-                    ChatMessages.map((data, index)=>(
-                        <ChatMessage 
-                            chatUserName            = {data.username}
-                            chatUserAvatar          = {data.useravatar}
-                            chatMessage             = {data.chatmessage}
-                            chatTimeStamp           = {data.timestamp}
-                            chatReaction            = {data.reaction}
-                        />                        
-                    ))
-                }
-            </MessageContainer>
+            <ChatMessagesArea> 
+                <MessageContainer>
+                    {
+                        ChatMessages.length > 0 &&
+                        ChatMessages.map((data, index)=>(
+                            <ChatMessage 
+                                chatUserName            = {data.username}
+                                chatUserAvatar          = {data.useravatar}
+                                chatMessage             = {data.chatmessage}
+                                chatTimeStamp           = {data.timestamp}
+                                chatReaction            = {data.reaction}
+                            />                        
+                        ))
+                    }
+                </MessageContainer>
+            </ChatMessagesArea>
             <ChatInput sendMessage = { sendMessage }/>
         </ChatAreaContainer>
     )
@@ -78,22 +80,25 @@ export default Chat
 const ChatAreaContainer = styled.div`
     height: 100%;
     display: grid;
-    // grid-template-rows: 64px auto min-content;
-    grid-template-rows: 64px minmax(0, 1fr);
-  
-
+    grid-template-rows: 64px auto min-content;
 `
-const MessageContainer = styled.span`
-    display: flex;
-    flex-direction: column;
-    // grid-template-column: 64px minmax(1fr, 0);
-    // min-height: 1fr;
-    height: 100%;
+const ChatMessagesArea = styled.div`
+    height : 100%;
+    display: grid;
+    grid-template-rows: 64px minmax(0, 1fr);
     overflow-y: scroll;
-    background: #97d190;
-    padding-left: 20px;
-    padding-right: 10px;  
-    color: white;
+    background: #d0f7c3;
+    // background: #97d190;
     border: 1px solid #030e29;
     border-radius: 6px;
+`
+
+const MessageContainer = styled.span`
+    // display: flex;
+    // flex-direction: column;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 10px;  
+    // color: white;
+   
 `

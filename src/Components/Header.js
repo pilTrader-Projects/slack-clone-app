@@ -33,6 +33,8 @@ function Header({user, signOut}) {
 
 export default Header
 const Container = styled.div`
+    border 1px solid  gray;
+    border-radius: 5px;
     // background: #350d36;
     background: #030e29;  //Dark Mode
     color: white;
@@ -40,6 +42,7 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
+    height: 40px;
 `
 
 const Main = styled.div`

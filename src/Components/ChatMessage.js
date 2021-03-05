@@ -48,7 +48,8 @@ const Container = styled.div`
     padding-bottom: 10px;
     margin-bottom: 3px;
     :hover{
-        background: #d0f7c3;
+        // background: #d0f7c3;
+        background: #97d190;;
     }
 `
 const UserContainer = styled.div`
