@@ -11,6 +11,18 @@ function Chat() {
 
     let {channelId} = useParams();
     const [channel, setChannel] = useState();
+    const [ChatMessages, setChatMessages] = useState([])
+    
+    const GetChatMessages = ()=> { 
+        db.collection('channels')
+        .doc(channelId)
+        .collection("messages")
+        .orderBy('timestamp', 'asc')
+        .onSnapshot((snapshot) => {
+           let ChatMessages = snapshot.docs.map((doc) => doc.data());
+            setChatMessages(ChatMessages);
+        })
+    }
     const getChannelName = () => {
         db.collection('channels')
         .doc(channelId)
@@ -23,14 +35,25 @@ function Chat() {
     
     useEffect(()=> {
         getChannelName(channelId);
+        GetChatMessages();
     }, [channelId])
-    
 
     return (
         <Container>
             <ChatHeader channel={channel} />    
             <MessageContainer>
-                <ChatMessage />
+                {
+                    ChatMessages.length > 0 &&
+                    ChatMessages.map((data, index)=>(
+                        <ChatMessage 
+                            chatUserName            = {data.username}
+                            chatUserAvatar          = {data.useravatar}
+                            chatMessage             = {data.chatmessage}
+                            chatTimeStamp           = {data.timestamp}
+                            chatReaction            = {data.reaction}
+                        />                        
+                    ))
+                }
             </MessageContainer>
             <ChatInput />
             
@@ -47,9 +70,9 @@ const Container = styled.div`
   
 
 `
-const MessageContainer = styled.div`
+const MessageContainer = styled.span`
     background: #97d190;
-    // padding-top: 20px;
+    // margin-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;    
     height: auto;
