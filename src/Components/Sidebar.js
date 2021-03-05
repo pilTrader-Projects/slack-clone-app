@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import AddIcon from '@material-ui/icons/Add';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
+import AddIcon from '@material-ui/icons/Add'
 import { sidebarItems } from '../Data/SidebarData'
 import { sidebarChannel } from '../Data/SidebarData'
 import { getChannels } from '../App'
@@ -110,6 +110,7 @@ const NewMessage = styled.div`
     }
 `
 const MainChannels = styled.div``
+
 const MainchannelItem = styled.div`
     color: rgb(188, 171, 188);
     display: grid;
@@ -124,6 +125,7 @@ const MainchannelItem = styled.div`
     }
 `
 const UserChannelContainer = styled.div``
+
 const NewChannelContainer = styled.div`
     color: rgb(188, 171, 188);
     height: 28px;

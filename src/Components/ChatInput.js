@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import FlashOnIcon from '@material-ui/icons/FlashOn';
 import FormatBoldIcon from '@material-ui/icons/FormatBold';
@@ -14,12 +14,26 @@ import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 
 
-function ChatInput() {
+function ChatInput( {sendMessage } ) {
+
+    const [inputContent, setinputContent] = useState('');
+    const send = (e) => {
+        e.preventDefault();
+        if(!inputContent) return;
+        sendMessage(inputContent) ; //get the message being tracked
+        setinputContent("");
+        
+    }
+    // console.log(input);
     return (
         <Container>
             <ChatInputPrompt>
                 <form>
-                    <input type = "text" placeholder = "Type your Message here..."/>
+                    <input 
+                        onChange = {(e)=> setinputContent(e.target.value)}
+                        value = { inputContent }
+                        type = "text" 
+                        placeholder = "Type your Message here..."/>
                 </form>
             </ChatInputPrompt>
             <ChatInputIcons>
@@ -34,15 +48,15 @@ function ChatInput() {
                     <MoreHorizIcon />   
                 </FormatGrpIcons>
 
-                <EmojGrpIcons>
-                    
+                <EmojGrpIcons>  
                     <AlternateEmailIcon />
                     <EmojiEmotionsIcon />
                     <AttachFileIcon />
-                    <SendButton>
+                    <SendButton 
+                        type = "submit"
+                        onClick = { send }>
                         <SendIcon />
                     </SendButton>
-                    
                 </EmojGrpIcons>
             </ChatInputIcons>
         </Container>
@@ -70,13 +84,15 @@ const ChatInputPrompt = styled.div`
         }
     }
 `
-const SendButton = styled.div`
+const SendButton = styled.button`
     padding-left: 20px;
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 20px;
     margin-right: 4px;
     margin-left: 4px;
+    border: none;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     // cursor: pointer;
@@ -84,6 +100,9 @@ const SendButton = styled.div`
         background: green;
         color: white;
         border-radius: 4px;
+    }
+    :onSubmit{
+        {send}
     }
     .MuiSvgIcon-root{
         width: 20px;        

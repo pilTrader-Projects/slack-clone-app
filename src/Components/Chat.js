@@ -5,12 +5,37 @@ import ChatInput from './ChatInput'
 import ChatMessage from './ChatMessage'
 import db from '../firebase'
 import { useParams } from 'react-router-dom'
+import firebase from 'firebase'
 
-
-function Chat() {
+function Chat({user}) {
 
     let {channelId} = useParams();
     const [channel, setChannel] = useState();
+    const [ChatMessages, setChatMessages] = useState([])
+
+    const sendMessage = (text) =>{
+        if(channelId) {
+            let payload = {
+                chatmessage: text,
+                username: user.name,
+                useravatar: user.photo,
+                timestamp: firebase.firestore.Timestamp.now()
+            }
+            db.collection("channels").doc(channelId).collection('messages').add(payload);
+            console.log(payload);
+        }
+    }
+    
+    const GetChatMessages = ()=> { 
+        db.collection('channels')
+        .doc(channelId)
+        .collection("messages")
+        .orderBy('timestamp', 'asc')
+        .onSnapshot((snapshot) => {
+           let ChatMessages = snapshot.docs.map((doc) => doc.data());
+            setChatMessages(ChatMessages);
+        })
+    }
     const getChannelName = () => {
         db.collection('channels')
         .doc(channelId)
@@ -23,36 +48,51 @@ function Chat() {
     
     useEffect(()=> {
         getChannelName(channelId);
+        GetChatMessages();
     }, [channelId])
-    
 
     return (
-        <Container>
+        <ChatAreaContainer>
             <ChatHeader channel={channel} />    
             <MessageContainer>
-                <ChatMessage />
+                {
+                    ChatMessages.length > 0 &&
+                    ChatMessages.map((data, index)=>(
+                        <ChatMessage 
+                            chatUserName            = {data.username}
+                            chatUserAvatar          = {data.useravatar}
+                            chatMessage             = {data.chatmessage}
+                            chatTimeStamp           = {data.timestamp}
+                            chatReaction            = {data.reaction}
+                        />                        
+                    ))
+                }
             </MessageContainer>
-            <ChatInput />
-            
-        </Container>
+            <ChatInput sendMessage = { sendMessage }/>
+        </ChatAreaContainer>
     )
 }
 
 export default Chat
 
-const Container = styled.div`
-    // height: 100%;
+const ChatAreaContainer = styled.div`
+    height: 100%;
     display: grid;
-    grid-template-rows: 64px auto min-content;
+    // grid-template-rows: 64px auto min-content;
+    grid-template-rows: 64px minmax(0, 1fr);
   
 
 `
-const MessageContainer = styled.div`
+const MessageContainer = styled.span`
+    display: flex;
+    flex-direction: column;
+    // grid-template-column: 64px minmax(1fr, 0);
+    // min-height: 1fr;
+    height: 100%;
+    overflow-y: scroll;
     background: #97d190;
-    // padding-top: 20px;
     padding-left: 20px;
-    padding-right: 20px;    
-    height: auto;
+    padding-right: 10px;  
     color: white;
     border: 1px solid #030e29;
     border-radius: 6px;

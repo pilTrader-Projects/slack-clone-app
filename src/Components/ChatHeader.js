@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 import InfoIcon from '@material-ui/icons/Info';
-import Chat from './Chat.js'
-import db from '../firebase.js'
+// import Chat from './Chat.js'
+// import db from '../firebase.js'
 
 function ChatHeader(props) {
     // props.getChannelName();
@@ -20,8 +20,6 @@ function ChatHeader(props) {
         }
     }
 
-    // const test = ChangeChannel(props.channel);
-    // console.log(test[0]);
 
     return (
         <Container>
@@ -42,7 +40,7 @@ function ChatHeader(props) {
        </Container>
     )
 
-    console.log(Chat.getChannelName());
+    // console.log(Chat.getChannelName());
 }
 
 export default ChatHeader
