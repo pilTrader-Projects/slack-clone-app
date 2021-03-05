@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import InfoIcon from '@material-ui/icons/Info';
-import Chat from './Chat.js'
+// import Chat from './Chat.js'
 // import db from '../firebase.js'
 
 function ChatHeader(props) {

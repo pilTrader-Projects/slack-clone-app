@@ -8,7 +8,6 @@ function Login(props) {
 
     const signIn = () => {
         auth.signInWithPopup(provider).then((result) => {
-
             const newUser = {
                 name: result.user.displayName,
                 photo: result.user.photoURL,

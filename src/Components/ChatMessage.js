@@ -53,6 +53,7 @@ const Container = styled.div`
 `
 const UserContainer = styled.div`
     display: flex;
+    // min-height: 0;
     flex-direction: column;
     align-items: bottom;    
 `

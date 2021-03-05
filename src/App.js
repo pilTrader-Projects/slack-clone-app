@@ -58,7 +58,7 @@ function App(){
                    </Route>
                   <Switch> {/* Router Section */}
                     <Route path="/chat/:channelId">
-                      <Chat />
+                      <Chat user = { user }/>
                     </Route>
                     <Route path='/'>
                       <NoChannelSelectedMsg>
@@ -83,14 +83,15 @@ const NoChannelSelectedMsg = styled.div`
 
 
 const Container = styled.div`
-  background: #030e29;
   width: 100%; 
   height: 100vh;
   display: grid;
   grid-template-rows:38px auto;
-
+  background: #030e29; 
 `
 const Main = styled.div`
   display: grid;
+  min-height: 0px;
   grid-template-columns: 250px auto;
+  // background: yellow
 `
