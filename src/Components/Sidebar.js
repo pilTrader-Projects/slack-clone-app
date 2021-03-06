@@ -75,10 +75,10 @@ export default Sidebar
 
 const Container = styled.div`
     // background: #3f0e40; //Original Mode
-    background: #071942;  //Dark Mode
+    // background: #071942;  //Dark Mode
+    height: 100vh;
     color: white;
-    border: 1px solid #030e29;
-    border-radius: 5px;
+    // border: 1px solid #030e29;
 `
 const WorkspaceContainer = styled.div`
     color: white;
@@ -109,7 +109,11 @@ const NewMessage = styled.div`
         color: yellow;
     }
 `
-const MainChannels = styled.div``
+const MainChannels = styled.div`
+    // display: grid;
+    // grid-template-rows: auto minmax(0, 1fr);
+    // overflow-y: scroll;
+`
 
 const MainchannelItem = styled.div`
     color: rgb(188, 171, 188);
@@ -124,7 +128,12 @@ const MainchannelItem = styled.div`
         color: yellow;
     }
 `
-const UserChannelContainer = styled.div``
+const UserChannelContainer = styled.div`
+    min-height: 0px;
+    display: grid;
+    // grid-template-rows: 50px auto;
+    // overflow-y: scroll;
+`
 
 const NewChannelContainer = styled.div`
     color: rgb(188, 171, 188);
@@ -147,9 +156,9 @@ const AddNewChannelIcon = styled.div`
     }
 `
 const ChannelsLists = styled.div`
+    min-height: 0px;
     color: rgb(188, 171, 188);
-    display: grid;
-    cursor: pointer;
+    // cursor: pointer;
 `
 const Channel = styled.div`
     color: rgb(188, 171, 188);

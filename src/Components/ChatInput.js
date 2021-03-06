@@ -47,7 +47,6 @@ function ChatInput( {sendMessage } ) {
                     <FormatListBulletedIcon />
                     <MoreHorizIcon />   
                 </FormatGrpIcons>
-
                 <EmojGrpIcons>  
                     <AlternateEmailIcon />
                     <EmojiEmotionsIcon />
