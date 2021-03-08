@@ -22,7 +22,7 @@ function Chat({user}) {
                 timestamp: firebase.firestore.Timestamp.now()
             }
             db.collection("channels").doc(channelId).collection('messages').add(payload);
-            console.log(payload);
+            // console.log(payload);
         }
     }
     
@@ -85,16 +85,20 @@ const ChatAreaContainer = styled.div`
 const ChatMessagesArea = styled.div`
     height : 100%;
     display: grid;
+    overflow-y: scroll; 
+    grid-auto-flow: auto;
+    // grid-row: 1;
     grid-template-rows: 64px minmax(0, 1fr);
-    overflow-y: scroll;
+    // scrollTop: height;
     background: #d0f7c3;
-    // background: #97d190;
+    // background: 
     border: 1px solid #030e29;
     border-radius: 6px;
 `
 
 const MessageContainer = styled.span`
     // display: flex;
+    // auto-flow: dense;
     // flex-direction: column;
     height: 100%;
     padding-left: 5px;

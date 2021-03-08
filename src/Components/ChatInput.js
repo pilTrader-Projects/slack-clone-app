@@ -17,6 +17,7 @@ import AttachFileIcon from '@material-ui/icons/AttachFile';
 function ChatInput( {sendMessage } ) {
 
     const [inputContent, setinputContent] = useState('');
+
     const send = (e) => {
         e.preventDefault();
         if(!inputContent) return;
@@ -30,10 +31,18 @@ function ChatInput( {sendMessage } ) {
             <ChatInputPrompt>
                 <form>
                     <input 
-                        onChange = {(e)=> setinputContent(e.target.value)}
+                        onChange = {        
+                            (e)=> setinputContent(e.target.value)
+                            }
+                        
                         value = { inputContent }
                         type = "text" 
                         placeholder = "Type your Message here..."/>
+                    <SendButton 
+                        type = 'submit'
+                        onClick = { send }>
+                        <SendIcon/>
+                    </SendButton>
                 </form>
             </ChatInputPrompt>
             <ChatInputIcons>
@@ -51,11 +60,6 @@ function ChatInput( {sendMessage } ) {
                     <AlternateEmailIcon />
                     <EmojiEmotionsIcon />
                     <AttachFileIcon />
-                    <SendButton 
-                        type = "submit"
-                        onClick = { send }>
-                        <SendIcon />
-                    </SendButton>
                 </EmojGrpIcons>
             </ChatInputIcons>
         </Container>
@@ -66,16 +70,17 @@ export default ChatInput
 
 const ChatInputPrompt = styled.div`
     padding-left: 10px;
-    padding-right: 20px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    position: relative;
     background: white;
-    border-radius: 6px;
+    border-radius: 4px;
     form {
         display: flex;
         height: 42px;
         input{
             flex: 1;
+            width: 100%;
             border: none;
             :focus {
                 outline: none;
@@ -92,17 +97,17 @@ const SendButton = styled.button`
     margin-left: 4px;
     border: none;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    position: absolune;
+    right: 0;
     // cursor: pointer;
     :hover{
         background: green;
         color: white;
         border-radius: 4px;
     }
-    :onSubmit{
-        {send}
-    }
+
     .MuiSvgIcon-root{
         width: 20px;        
     }
